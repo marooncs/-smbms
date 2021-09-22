@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shi.dao.bill.billDao">
+
+    <select id="getBillCount" parameterType="map" resultType="_int">
+        select count(b.id) from smbms_bill b inner join smbms_provider p
+        on b.providerId = p.id
+        <where>
+            <if test="productName != null">
+                b.productName like concat('%',#{productName},'%')
+            </if>
+            <if test="providerId != 0">
+                and p.id = #{providerId}
+            </if>
+            <if test="isPayment != 0">
+                and b.isPayment = #{isPayment}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="billMap" type="Bill">
+        <result property="providerName" column="pname"/>
+    </resultMap>
+
+    <select id="getBillList" parameterType="map" resultMap="billMap">
+        select b.*, p.proName as pname from smbms_bill b inner join smbms_provider p
+        on b.providerId = p.id
+        <where>
+            <if test="productName != null">
+                b.productName like concat('%',#{productName},'%')
+            </if>
+            <if test="providerId != 0">
+                and p.id = #{providerId}
+            </if>
+            <if test="isPayment != 0">
+                and b.isPayment = #{isPayment}
+            </if>
+        </where>
+        order by b.id limit #{currentPageNo}, #{pageSize};
+    </select>
+
+    <select id="getBillById" parameterType="_int" resultMap="billMap">
+        select b.*, p.proName as pname from smbms_bill b inner join smbms_provider p
+        on b.providerId = p.id
+        where b.id = #{id};
+    </select>
+
+    <insert id="addBill" parameterType="Bill">
+        insert into smbms_bill(
+            billCode,productName,productDesc,productUnit,productCount,totalPrice,isPayment,createdBy,creationDate,providerId
+        )values(
+            #{billCode},#{productName},#{productDesc},#{productUnit},#{productCount},#{totalPrice},#{isPayment},#{createdBy},#{creationDate},#{providerId}
+        );
+    </insert>
+
+    <update id="modifyBill" parameterType="Bill">
+        update smbms_bill
+        <set>
+            <if test="productName != null">
+                productName = #{productName},
+            </if>
+            <if test="productDesc != null">
+                productDesc = #{productDesc},
+            </if>
+            <if test="productUnit != null">
+                productUnit = #{productUnit},
+            </if>
+            <if test="productCount != null">
+                productCount = #{productCount},
+            </if>
+            <if test="totalPrice != null">
+                totalPrice = #{totalPrice},
+            </if>
+            <if test="isPayment != null">
+                isPayment = #{isPayment},
+            </if>
+            <if test="createdBy != null">
+                createdBy = #{createdBy},
+            </if>
+            <if test="creationDate != null">
+                creationDate = #{creationDate},
+            </if>
+            <if test="providerId != null">
+                providerId = #{providerId}
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <delete id="delBill" parameterType="_int">
+        delete from smbms_bill
+        where id = #{id};
+    </delete>
+
+
+
+
+</mapper>

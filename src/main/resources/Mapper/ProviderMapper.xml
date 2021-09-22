@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shi.dao.provider.providerDao">
+    <select id="getProviderList" parameterType="map" resultType="Provider">
+        select * from smbms_provider
+        <where>
+            <if test="proName != null">
+                proName like concat('%', #{proName}, '%')
+            </if>
+            <if test="proCode != null">
+                and proCode like concat('%', #{proCode}, '%')
+            </if>
+        </where>
+        order by id limit #{CurrentPageNo}, #{PageSize};
+    </select>
+
+    <select id="getAllProviderList" resultType="Provider">
+        select * from smbms_provider
+        order by id
+    </select>
+
+    <select id="getProviderCount" parameterType="map" resultType="_int">
+        select count(id) from smbms_provider
+        <where>
+            <if test="proName != null">
+                proName like concat('%', #{proName}, '%')
+            </if>
+            <if test="proCode != null">
+                and proCode like concat('%', #{proCode}, '%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="addProvider" parameterType="Provider">
+        insert into smbms_provider(
+        proCode,proName,proDesc,proContact,proPhone,proAddress,proFax,createdBy,creationDate,modifyDate,modifyBy)
+        values(
+        #{proCode},#{proName},#{proDesc},#{proContact},#{proPhone},#{proAddress},#{proFax},#{createdBy},#{creationDate},#{modifyDate},#{modifyBy}
+        );
+    </insert>
+
+    <select id="getProviderByCode" parameterType="string" resultType="Provider">
+        select * from smbms_provider
+        where proCode = #{proCode};
+    </select>
+
+    <select id="getProviderById" parameterType="_int" resultType="Provider">
+        select * from smbms_provider
+        where id = #{id};
+    </select>
+    
+    <update id="modifyProvider" parameterType="Provider">
+        update smbms_provider
+        <set>
+            <if test="proName != null">
+                proName = #{proName},
+            </if>
+            <if test="proContact != null">
+                proContact = #{proContact},
+            </if>
+            <if test="proPhone != null">
+                proPhone = #{proPhone},
+            </if>
+            <if test="proAddress != null">
+                proAddress = #{proAddress},
+            </if>
+            <if test="proFax != null">
+                proFax = #{proFax},
+            </if>
+            <if test="proDesc != null">
+                proDesc = #{proDesc}
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <delete id="delProvider" parameterType="_int">
+        delete from smbms_provider
+        where id = #{id};
+    </delete>
+
+</mapper>

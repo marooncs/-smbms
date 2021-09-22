@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shi.dao.user.userDao">
+
+    <select id="getLoginUser" parameterType="string" resultType="User">
+        select * from smbms_user where userCode = #{userCode};
+    </select>
+    
+    <resultMap id="userMap" type="User">
+        <result property="userRoleName" column="rname"/>
+    </resultMap>
+    <select id="getUserCount" parameterType="map" resultType="_int">
+        select count(u.id) as count from smbms_user u inner join smbms_role r
+        on u.userRole = r.id
+        <where>
+            <if test="username != null">
+                u.userName like concat('%',#{username},'%')
+            </if>
+            <if test="userRole != 0">
+                and u.userRole = #{userRole}
+            </if>
+        </where>
+    </select>
+
+    <select id="getUserList" parameterType="map" resultMap="userMap">
+        select u.*, r.roleName as rname from smbms_user u inner join smbms_role r
+        on u.userRole = r.id
+        <where>
+            <if test="username != null">
+                u.userName like concat('%',#{username},'%')
+            </if>
+            <if test="userRole != 0">
+                and u.userRole = #{userRole}
+            </if>
+        </where>
+        order by u.id limit #{CurrentPageNo}, #{PageSize};
+    </select>
+
+    <update id="updateUserPwd" parameterType="map">
+        update smbms_user set userPassword = #{password}
+        where id = #{id}
+    </update>
+
+    <select id="userCodeExist" parameterType="string" resultType="User">
+        select * from userCodeExist where userCode = #{userCode};
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into smbms_user(
+            userCode,userName,userPassword,gender,birthday,phone,address,userRole,createdBy,creationDate
+        )values(
+            #{userCode},#{userName},#{userPassword},#{gender},#{birthday},#{phone},#{address},#{userRole},#{createBy},#{creationDay}
+        );
+    </insert>
+
+    <select id="getUserById" resultMap="userMap">
+        select u.*, r.roleName as rname from smbms_user u inner join smbms_role r
+        on u.userRole = r.id
+        where u.id = #{id};
+    </select>
+
+    <update id="modifyUser" parameterType="User">
+        update smbms_user
+        <set>
+            <if test="userName != null">
+                userName = #{userName},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="userRole != null">
+                userRole = #{userRole},
+            </if>
+            <if test="modifyBy != null">
+                modifyBy = #{modifyBy},
+            </if>
+            <if test="modifyDate != null">
+                modifyDate = #{modifyDate}
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <delete id="delUser" parameterType="_int">
+        delete from smbms_user
+        where id = #{id};
+    </delete>
+
+
+
+</mapper>

@@ -1,0 +1,204 @@
+.login_bg{
+    text-align: center;
+    background:linear-gradient(to bottom right, #84fab0,#8fd3f4);
+}
+.login_header{
+    height: 100px;
+    line-height: 100px;
+}
+.login_box{
+    height: 300px;
+    width: 400px;
+    margin: 0 auto;
+    background: sandybrown;
+    border:2px solid salmon;
+    border-radius: 20px;
+}
+.inputbox{
+    height: 60px;
+}
+
+/*输入框得到焦点的效果*/
+.inputbox input:focus {
+    border: 1px solid rgba(91, 90, 90, 0.7);
+    background: rgba(238, 236, 240, 0.2);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}
+.login_info{
+    color: red;
+}
+
+.providerTable {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.providerTable tr {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.providerTable tr:nth-child(odd) {
+    background: #e9f9ca;
+}
+
+.providerTable tr:hover {
+    background: #fffa84;
+}
+
+.firstTr {
+    border: 1px solid #d6dfe6;
+    background: linear-gradient(to bottom, #f3f8fc, #ebf4f9, #e3f1fa, #e0f0fd, #d8e9fd);
+}
+.firstTr th {
+    border-right: 2px solid rgba(209, 218, 223, 0.4);
+}
+.providerTable td a {
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/*点击删除按钮后弹出的层*/
+.zhezhao {
+    display: none;          /* 修改这里可以让遮罩层消失*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    overflow: hidden;
+}
+.remove{
+    display: none;       /* 修改这里可以让删除框消失*/
+    width: 400px;
+    height: 190px;
+    position: absolute;
+    top: 200px;
+    left:500px;
+    background: #fff;
+    border-radius: 4px;
+}
+.removerChid{
+    margin: 4px;
+    border: 1px solid #ccc;
+}
+.removerChid h2{
+    padding-left: 8px;
+    font-size: 14px;
+    line-height: 30px;
+    margin: 4px 8px;
+    border-bottom: 1px solid #99cc33;
+}
+.removeMain{
+    margin-top: 38px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+.removeMain a{
+    padding: 0 20px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    border: 1px solid #5e8809;
+    margin-top: 30px;
+    background: #99cc33;
+    color: #fff;
+}
+.removeMain a:hover,.removeMain a:active{
+    background: #679016;
+
+}
+
+.providerAdd {
+    border: 1px solid #9ac70f;
+    padding: 20px;
+    margin: 20px;
+}
+
+.providerAdd form {
+
+}
+
+.providerAdd div {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.providerAdd label {
+    width: 200px;
+    display: inline-block;
+    text-align: right;
+}
+
+.providerAdd input ,.providerAdd select{
+    width: 260px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    outline: none;
+    padding-left: 10px;
+    border: 1px solid #4987c0;
+    box-shadow: 1px 1px 1px #99afc4;
+}
+
+.providerAdd input:focus,.providerAdd select:focus {
+    border: 1px solid #0e56a8;
+    background: rgba(238, 236, 240, 0.2);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}
+
+.providerAdd span {
+    margin-left: 20px;
+    color: #faca0d;
+}
+
+input[type='submit'], input[type='reset'], .providerView a {
+    width: 18%;
+    cursor: pointer;
+    background: #54a4d7;
+    padding: 4px 18px;
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    color: #fff;
+    font-size: 18px;
+    border: 1px solid #4682be;
+    margin-bottom: 10px;
+    margin-right: 22px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 1px 4px 4px rgba(0, 0, 0, 0.07) inset,
+    0px 0px 0px 3px rgb(254, 254, 254),
+    0px 5px 3px 3px rgb(210, 210, 210);
+    -moz-box-shadow: 0px 1px 4px 4px rgba(0, 0, 0, 0.07) inset,
+    0px 0px 0px 3px rgb(254, 254, 254),
+    0px 5px 3px 3px rgb(210, 210, 210);
+    box-shadow: 0px 1px 4px 4px rgba(0, 0, 0, 0.07) inset,
+    0px 0px 0px 3px rgb(254, 254, 254),
+    0px 5px 3px 3px rgb(210, 210, 210);
+
+}
+
+input[type='submit']:hover, input[type='reset']:hover {
+    background: rgb(74, 179, 198);
+}
+
+input[type='submit']:active, input[type='submit']:focus,
+input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .providerView a:active {
+    background: #2a5989;
+    border: 1px solid rgb(12, 76, 87);
+    -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+}
